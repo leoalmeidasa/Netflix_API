@@ -1,24 +1,27 @@
-# README
+# Projeto Desafio da Empresa Mobile2You 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Vaga de Desenvolvedor Backend Rails
 
-Things you may want to cover:
+## Requisitos
 
-* Ruby version
+● A leitura do arquivo .csv deve ser através de um endpoint diferente da listagem de títulos;
 
-* System dependencies
+● Ordenar pelo ano de lançamento;
 
-* Configuration
+● Filtrar os registros por ano de lançamento, gênero, país*;
 
-* Database creation
+● Garantir que não haja duplicidade de registros;
 
-* Database initialization
+## Dependências
 
-* How to run the test suite
+- Ruby 3.0.2
+- Rails 6.1.4.1
 
-* Services (job queues, cache servers, search engines, etc.)
+## Setup
 
-* Deployment instructions
-
-* ...
+1. `git clone https://github.com/leoalmeidasa/Netflix_API.git
+2. `cd Netflix_API`
+3. `rake db:create db:migrate `
+4. `rspec spec/` (para verificar se todos os testes estão ok)
+5. `rails s`
+5. Abrir o link [localhost:3000](localhost:3000)
