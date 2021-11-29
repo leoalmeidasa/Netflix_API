@@ -13,7 +13,7 @@ module Api
         @netflix = Netflix.new(netflix_params)
 
         if @netflix.save
-          render :show, status: :created
+          render json: @netflix, status: :created
         else
           render json: @netflix.errors, status: :unprocessable_entity
         end
@@ -25,7 +25,7 @@ module Api
       # PATCH/PUT /netflixes/1
       def update
         if @netflix.update(netflix_params)
-          render :show, status: :ok
+          render json: "Update Completed Successful", status: :ok
         else
           render json: @netflix.errors, status: :unprocessable_entity
         end
@@ -33,11 +33,18 @@ module Api
 
       # DELETE /netflixes/1
       def destroy
-        @netflix.destroy
+        if @netflix.destroy
+          render json: {
+            message: "Deleted"
+          }, status: :ok
+        else
+          render json: @netflix.errors, status: :unprocessable_entity
+        end
       end
 
       def upload
         Netflix.import(params[:file])
+        render json: "Upload Completed Successful", status: :created
       end
 
       # GET /netflixes/country
