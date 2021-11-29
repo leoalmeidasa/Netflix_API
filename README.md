@@ -17,6 +17,11 @@
 - Ruby 3.0.2
 - Rails 6.1.4.1
 
+## Documentação da API
+
+● link: https://www.postman.com/devtechbrazil/workspace/devtech-brazil/overview
+
+
 ## Setup
 
 1. `git clone https://github.com/leoalmeidasa/Netflix_API.git
