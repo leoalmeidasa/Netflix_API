@@ -27,6 +27,7 @@
 1. `git clone https://github.com/leoalmeidasa/Netflix_API.git
 2. `cd Netflix_API`
 3. `rake db:create db:migrate `
-4. `rspec spec/` (para verificar se todos os testes estão ok)
-5. `rails s`
-5. Abrir o link [localhost:3000](localhost:3000)
+4. `fazer upload do arquivo csv`
+5. `rspec spec/` (para verificar se todos os testes estão ok)
+6. `rails s`
+7. Abrir o link [localhost:3000](localhost:3000)
