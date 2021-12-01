@@ -1,11 +1,23 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class NetflixesController < ApplicationController
-      before_action :set_netflix, only: [:show, :update, :destroy]
+      before_action :set_netflix, only: %i[show update destroy]
 
       # GET /netflixes
       def index
-        render json: @netflixes = Netflix.all.order("published_at ASC")
+        @netflixes = if params['country'].present?
+                       Netflix.country(params['country'])
+                     elsif params['genre'].present?
+                       Netflix.genre(params['genre'])
+                     elsif params['published_at'].present?
+                       Netflix.published_at(params['published_at'])
+                     else
+                       Netflix.all.order('published_at ASC')
+                     end
+
+        render json: @netflixes
       end
 
       # POST /netflixes
@@ -25,7 +37,7 @@ module Api
       # PATCH/PUT /netflixes/1
       def update
         if @netflix.update(netflix_params)
-          render json: "Update Completed Successful", status: :ok
+          render json: 'Update Completed Successful', status: :ok
         else
           render json: @netflix.errors, status: :unprocessable_entity
         end
@@ -35,7 +47,7 @@ module Api
       def destroy
         if @netflix.destroy
           render json: {
-            message: "Deleted"
+            message: 'Deleted'
           }, status: :ok
         else
           render json: @netflix.errors, status: :unprocessable_entity
@@ -43,8 +55,8 @@ module Api
       end
 
       def upload
-        UploadNetflix.import(params[:file])
-        redirect_to api_v1_netflixes_url, notice: "Upload Completed Successful"
+        NetflixService.new.import(params[:file].path)
+        redirect_to api_v1_netflixes_url, notice: 'Upload Completed Successful'
       end
 
       # GET /netflixes/country
@@ -53,19 +65,8 @@ module Api
         render json: @netflixes
       end
 
-      # GET /netflixes/genre
-      def genre
-        @netflixes = Netflix.genre('TV Show')
-        render json: @netflixes
-      end
-
-      # GET /netflixes/published
-      def published
-        @netflixes = Netflix.published_at('2021-01-01')
-        render json: @netflixes
-      end
-
       private
+
       # Use callbacks to share common setup or constraints between actions.
       def set_netflix
         @netflix = Netflix.find(params[:id])
