@@ -43,8 +43,8 @@ module Api
       end
 
       def upload
-        Netflix.import(params[:file])
-        render json: "Upload Completed Successful", status: :created
+        UploadNetflix.import(params[:file])
+        redirect_to api_v1_netflixes_url, notice: "Upload Completed Successful"
       end
 
       # GET /netflixes/country
