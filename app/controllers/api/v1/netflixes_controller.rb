@@ -59,12 +59,6 @@ module Api
         redirect_to api_v1_netflixes_url, notice: 'Upload Completed Successful'
       end
 
-      # GET /netflixes/country
-      def country
-        @netflixes = Netflix.country('Brazil')
-        render json: @netflixes
-      end
-
       private
 
       # Use callbacks to share common setup or constraints between actions.

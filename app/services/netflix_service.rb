@@ -7,25 +7,25 @@ class NetflixService
     csv_text = File.read(file)
     csv = CSV.parse(csv_text, headers: true, encoding: 'ISO-8859-1', col_sep: ',')
     csv.each do |row|
-      netiflix = ensure_duplicity(row)
+      netflix = ensure_duplicity(row)
 
-      netiflix.genre = row['type']
-      netiflix.title = row['title']
-      netiflix.director = row['director']
-      netiflix.cast = row['cast']
-      netiflix.country = row['country']
-      netiflix.published_at = row['date_added']
-      netiflix.year = row['release_year']
-      netiflix.rating = row['rating']
-      netiflix.duration = row['duration']
-      netiflix.listed_in = row['listed_in']
-      netiflix.description = row['description']
+      netflix.genre = row['type']
+      netflix.title = row['title']
+      netflix.director = row['director']
+      netflix.cast = row['cast']
+      netflix.country = row['country']
+      netflix.published_at = row['date_added'].to_date
+      netflix.year = row['release_year']
+      netflix.rating = row['rating']
+      netflix.duration = row['duration']
+      netflix.listed_in = row['listed_in']
+      netflix.description = row['description']
 
-      netiflix.save
+      netflix.save
     end
   end
 
-  def self.ensure_duplicity(row)
+  def ensure_duplicity(row)
     Netflix.find_or_initialize_by(id_csv: row['show_id'])
   end
 end
