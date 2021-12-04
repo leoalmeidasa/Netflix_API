@@ -18,7 +18,7 @@
 - Rails 6.1.4.1
 - Postgres
 
-## Site no Heroku
+## API no Heroku
 ● https://netflix-titles-api.herokuapp.com/api/v1/netflixes/
 
 ## Documentação da API
