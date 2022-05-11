@@ -28,7 +28,7 @@
 
 ## Setup
 
-1. `git clone https://github.com/leoalmeidasa/Netflix_API.git
+1. `git clone https://github.com/leoalmeidasa/Netflix_API.git`
 2. `cd Netflix_API`
 3. `rake db:create db:migrate db:seed`
 4. `rspec spec/` (para verificar se todos os testes estão ok)
