@@ -33,4 +33,4 @@
 3. `rake db:create db:migrate db:seed`
 4. `rspec spec/` (para verificar se todos os testes estão ok)
 5. `rails s`
-6. Abrir o link localhost:3000
+6. Abrir o link http://localhost:3000
